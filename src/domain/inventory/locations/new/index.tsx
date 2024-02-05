@@ -4,10 +4,10 @@ import {
   StockLocationAddressDTO,
   StockLocationAddressInput,
 } from "@medusajs/medusa"
-import {
-  useAdminAddLocationToSalesChannel,
-  useAdminCreateStockLocation,
-} from "medusa-react"
+// import {
+//   useAdminAddLocationToSalesChannel,
+//   useAdminCreateStockLocation,
+// } from "medusa-react"
 import { useForm } from "react-hook-form"
 import Button from "../../../../components/fundamentals/button"
 import CrossIcon from "../../../../components/fundamentals/icons/cross-icon"
@@ -48,46 +48,46 @@ const NewLocation = ({ onClose }: { onClose: () => void }) => {
   const notification = useNotification()
   const { isFeatureEnabled } = useFeatureFlag()
 
-  const { mutateAsync: createStockLocation } = useAdminCreateStockLocation()
-  const { mutateAsync: associateSalesChannel } =
-    useAdminAddLocationToSalesChannel()
+  // const { mutateAsync: createStockLocation } = useAdminCreateStockLocation()
+  // const { mutateAsync: associateSalesChannel } =
+  //   useAdminAddLocationToSalesChannel()
 
-  const createSalesChannelAssociationPromise = (salesChannelId, locationId) =>
-    associateSalesChannel({
-      sales_channel_id: salesChannelId,
-      location_id: locationId,
-    })
+  // const createSalesChannelAssociationPromise = (salesChannelId, locationId) =>
+  //   associateSalesChannel({
+  //     sales_channel_id: salesChannelId,
+  //     location_id: locationId,
+  //   })
 
-  const onSubmit = () =>
-    handleSubmit(async (data) => {
-      const { locationPayload, salesChannelsPayload } = createPayload(data)
-      try {
-        const { stock_location } = await createStockLocation(locationPayload)
-        Promise.all(
-          salesChannelsPayload.map((salesChannel) =>
-            createSalesChannelAssociationPromise(
-              salesChannel.id,
-              stock_location.id
-            )
-          )
-        )
-          .then(() => {
-            notification("Success", "Location added successfully", "success")
-          })
-          .catch(() => {
-            notification(
-              "Error",
-              "Location was created successfully, but there was an error associating sales channels",
-              "error"
-            )
-          })
-          .finally(() => {
-            onClose()
-          })
-      } catch (err) {
-        notification("Error", getErrorMessage(err), "error")
-      }
-    })
+  // const onSubmit = () =>
+  //   handleSubmit(async (data) => {
+  //     const { locationPayload, salesChannelsPayload } = createPayload(data)
+  //     try {
+  //       const { stock_location } = await createStockLocation(locationPayload)
+  //       Promise.all(
+  //         salesChannelsPayload.map((salesChannel) =>
+  //           createSalesChannelAssociationPromise(
+  //             salesChannel.id,
+  //             stock_location.id
+  //           )
+  //         )
+  //       )
+  //         .then(() => {
+  //           notification("Success", "Location added successfully", "success")
+  //         })
+  //         .catch(() => {
+  //           notification(
+  //             "Error",
+  //             "Location was created successfully, but there was an error associating sales channels",
+  //             "error"
+  //           )
+  //         })
+  //         .finally(() => {
+  //           onClose()
+  //         })
+  //     } catch (err) {
+  //       notification("Error", getErrorMessage(err), "error")
+  //     }
+  //   })
 
   const { isDirty, isValid } = formState
 
@@ -105,7 +105,7 @@ const NewLocation = ({ onClose }: { onClose: () => void }) => {
               <CrossIcon size={20} />
             </Button>
             <div className="flex gap-x-small">
-              <Button
+              {/* <Button
                 size="small"
                 variant="secondary"
                 type="button"
@@ -113,7 +113,7 @@ const NewLocation = ({ onClose }: { onClose: () => void }) => {
                 onClick={onSubmit()}
               >
                 Add location
-              </Button>
+              </Button> */}
             </div>
           </div>
         </FocusModal.Header>
@@ -132,8 +132,8 @@ const NewLocation = ({ onClose }: { onClose: () => void }) => {
                   Specify the details about this location
                 </p>
                 <div className="flex flex-col mt-xlarge gap-y-xlarge">
-                  <GeneralForm form={nestedForm(form, "general")} />
-                  <AddressForm form={nestedForm(form, "address")} />
+                  {/* <GeneralForm form={nestedForm(form, "general")} /> */}
+                  {/* <AddressForm form={nestedForm(form, "address")} /> */}
                 </div>
               </Accordion.Item>
               {isFeatureEnabled("sales_channels") && (
