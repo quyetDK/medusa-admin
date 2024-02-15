@@ -1,4 +1,4 @@
-import { useAdminStockLocations } from "medusa-react"
+// import { useAdminStockLocations  } from "medusa-react"
 import Fade from "../../../components/atoms/fade-wrapper"
 import Spinner from "../../../components/atoms/spinner"
 import Button from "../../../components/fundamentals/button"
@@ -23,9 +23,9 @@ const Locations = () => {
     </Button>
   )
 
-  const { stock_locations, isLoading } = useAdminStockLocations({
-    expand: "address,sales_channels",
-  })
+  // const { stock_locations, isLoading } = useAdminStockLocations({
+  //   expand: "address,sales_channels",
+  // })
 
   return (
     <>
@@ -36,7 +36,7 @@ const Locations = () => {
             className="min-h-[85px] h-[85px]"
             customActionable={Actions}
           />
-          {isLoading ? (
+          {/* {isLoading ? (
             <div className="flex items-center justify-center w-full h-full">
               <Spinner variant="secondary" />
             </div>
@@ -46,7 +46,7 @@ const Locations = () => {
                 <LocationCard location={stockLocation} />
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <Fade isVisible={createLocationState} isFullScreen={true}>

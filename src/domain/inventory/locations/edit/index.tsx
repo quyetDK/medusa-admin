@@ -3,7 +3,7 @@ import {
   StockLocationAddressDTO,
   StockLocationDTO,
 } from "@medusajs/medusa"
-import { useAdminUpdateStockLocation } from "medusa-react"
+// import { useAdminUpdateStockLocation } from "medusa-react"
 import { useForm } from "react-hook-form"
 import Button from "../../../../components/fundamentals/button"
 import Modal from "../../../../components/molecules/modal"
@@ -36,7 +36,7 @@ const LocationEditModal = ({ onClose, location }: LocationEditModalProps) => {
   })
   const notification = useNotification()
 
-  const { mutate } = useAdminUpdateStockLocation(location.id)
+  // const { mutate } = useAdminUpdateStockLocation(location.id)
 
   const { handleSubmit, formState } = form
 
@@ -44,15 +44,15 @@ const LocationEditModal = ({ onClose, location }: LocationEditModalProps) => {
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = createPayload(data)
-    mutate(payload, {
-      onSuccess: () => {
-        onClose()
-        notification("Success", "Location edited successfully", "success")
-      },
-      onError: (err) => {
-        notification("Error", getErrorMessage(err), "error")
-      },
-    })
+    // mutate(payload, {
+    //   onSuccess: () => {
+    //     onClose()
+    //     notification("Success", "Location edited successfully", "success")
+    //   },
+    //   onError: (err) => {
+    //     notification("Error", getErrorMessage(err), "error")
+    //   },
+    // })
   })
 
   return (

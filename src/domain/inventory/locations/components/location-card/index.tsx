@@ -12,7 +12,7 @@ import useToggleState from "../../../../../hooks/use-toggle-state"
 import LocationEditModal from "../../edit"
 import SalesChannelsSection from "../sales-channels-section"
 import useImperativeDialog from "../../../../../hooks/use-imperative-dialog"
-import { useAdminDeleteStockLocation } from "medusa-react"
+import { useAdminDeleteCollection } from "medusa-react"
 import useNotification from "../../../../../hooks/use-notification"
 import { getErrorMessage } from "../../../../../utils/error-messages"
 import { useFeatureFlag } from "../../../../../context/feature-flag"
@@ -22,7 +22,7 @@ type Props = {
 }
 
 const LocationCard: React.FC<Props> = ({ location }) => {
-  const { mutate: deleteLocation } = useAdminDeleteStockLocation(location.id)
+  const { mutate: deleteLocation } = useAdminDeleteCollection(location.id)
 
   const dialog = useImperativeDialog()
   const notification = useNotification()

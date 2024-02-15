@@ -1,7 +1,7 @@
-import { StockLocationExpandedDTO } from "@medusajs/medusa"
+// import { StockLocationExpandedDTO } from "@medusajs/medusa"
 import {
-  useAdminAddLocationToSalesChannel,
-  useAdminRemoveLocationFromSalesChannel,
+  // useAdminAddLocationToSalesChannel,
+  // useAdminRemoveLocationFromSalesChannel,
 } from "medusa-react"
 import Button from "../../../../../components/fundamentals/button"
 import useToggleState from "../../../../../hooks/use-toggle-state"
@@ -10,7 +10,7 @@ import SalesChannelsModal from "../../../../products/components/sales-channels-m
 const EditSalesChannels = ({
   location,
 }: {
-  location: StockLocationExpandedDTO
+  location: any  //StockLocationExpandedDTO
 }) => {
   const {
     state: showSalesChannelsModal,
@@ -18,10 +18,8 @@ const EditSalesChannels = ({
     open: openSalesChannelsModal,
   } = useToggleState()
 
-  const { mutateAsync: addLocationToSalesChannel } =
-    useAdminAddLocationToSalesChannel()
-  const { mutateAsync: removeLocationFromSalesChannel } =
-    useAdminRemoveLocationFromSalesChannel()
+  // const { mutateAsync: addLocationToSalesChannel } = useAdminAddLocationToSalesChannel()
+  // const { mutateAsync: removeLocationFromSalesChannel } = useAdminRemoveLocationFromSalesChannel()
 
   const onSave = async (channels) => {
     const existingChannels = location.sales_channels
@@ -37,20 +35,20 @@ const EditSalesChannels = ({
           (existingChannel) => existingChannel.id === channel.id
         )
     )
-    Promise.all([
-      ...channelsToRemove.map((channelToRemove) =>
-        removeLocationFromSalesChannel({
-          sales_channel_id: channelToRemove.id,
-          location_id: location.id,
-        })
-      ),
-      ...channelsToAdd.map((channelToAdd) =>
-        addLocationToSalesChannel({
-          sales_channel_id: channelToAdd.id,
-          location_id: location.id,
-        })
-      ),
-    ])
+    // Promise.all([
+    //   ...channelsToRemove.map((channelToRemove) =>
+    //     removeLocationFromSalesChannel({
+    //       sales_channel_id: channelToRemove.id,
+    //       location_id: location.id,
+    //     })
+    //   ),
+    //   ...channelsToAdd.map((channelToAdd) =>
+    //     addLocationToSalesChannel({
+    //       sales_channel_id: channelToAdd.id,
+    //       location_id: location.id,
+    //     })
+    //   ),
+    // ])
   }
 
   return (
